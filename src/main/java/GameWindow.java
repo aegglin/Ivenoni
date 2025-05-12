@@ -1,5 +1,6 @@
 
 import javax.swing.JFrame;
+import java.awt.*;
 
 public class GameWindow extends JFrame implements Runnable{
 
@@ -32,5 +33,13 @@ public class GameWindow extends JFrame implements Runnable{
             update(deltaTime);
         }
         this.dispose();
+    }
+
+    public void update(double dt) {
+        Image dbImage = createImage(getWidth(), getHeight());
+        Graphics dbg = dbImage.getGraphics();
+        this.draw(dbg);
+        getGraphics().drawImage(dbImage, 0, 0, this);
+
     }
 }
