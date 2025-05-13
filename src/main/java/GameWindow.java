@@ -16,7 +16,7 @@ public class GameWindow extends JFrame implements Runnable{
 
         this.setResizable(false);
         this.setFocusable(true);
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); //put in center of screen
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBackground(Color.BLACK);
         this.setVisible(true);
