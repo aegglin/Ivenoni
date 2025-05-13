@@ -13,9 +13,13 @@ public class GameWindow extends JFrame implements Runnable{
     public GameWindow() {
         this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         this.setTitle("Ivenoni");
+
         this.setResizable(false);
-        this.setVisible(true);
+        this.setFocusable(true);
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setBackground(Color.BLACK);
+        this.setVisible(true);
 
         isRunning = false;
         gameThread = new Thread(this);
@@ -36,10 +40,6 @@ public class GameWindow extends JFrame implements Runnable{
     }
 
     public void update(double dt) {
-        Image dbImage = createImage(getWidth(), getHeight());
-        Graphics dbg = dbImage.getGraphics();
-        this.draw(dbg);
-        getGraphics().drawImage(dbImage, 0, 0, this);
 
     }
 }
