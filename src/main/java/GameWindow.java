@@ -1,45 +1,35 @@
 
+import javax.swing.JPanel;
 import javax.swing.JFrame;
-import java.awt.*;
 
-public class GameWindow extends JFrame implements Runnable{
+import java.awt.Color;
+import java.awt.Dimension;
 
-    public final int SCREEN_WIDTH = 800;
-    public final int SCREEN_HEIGHT = 600;
+public class GameWindow extends JFrame {
 
-    public boolean isRunning;
-    private Thread gameThread;
+    public static final int SCREEN_WIDTH = 800;
+    public static final int SCREEN_HEIGHT = 600;
 
     public GameWindow() {
-        this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        this.setTitle("Ivenoni");
-
-        this.setResizable(false);
-        this.setFocusable(true);
-        this.setLocationRelativeTo(null); //put in center of screen
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBackground(Color.BLACK);
-        this.setVisible(true);
-
-        isRunning = false;
-        gameThread = new Thread(this);
-        gameThread.start();
+        super();
+        GamePanel gamePanel = new GamePanel();
+        setTitle("Ivenoni");
+        setResizable(false);
+        setFocusable(true);
+        setLocationRelativeTo(null); //put in center of screen
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(gamePanel);
+        pack();
+        setVisible(true);
     }
+}
 
-    @Override
-    public void run() {
-        double lastFrameTime = 0.0;
-
-        while(gameThread != null) {
-            double time = Time.getTime();
-            double deltaTime = time - lastFrameTime;
-            lastFrameTime = time;
-            update(deltaTime);
-        }
-        this.dispose();
-    }
-
-    public void update(double dt) {
-
+class GamePanel extends JPanel {
+    GamePanel () {
+        setSize(GameWindow.SCREEN_WIDTH, GameWindow.SCREEN_HEIGHT);
+        setFocusable(true);
+        setPreferredSize(new Dimension(GameWindow.SCREEN_WIDTH, GameWindow.SCREEN_HEIGHT));
+        setBackground(Color.RED);
+        setDoubleBuffered(true);
     }
 }
