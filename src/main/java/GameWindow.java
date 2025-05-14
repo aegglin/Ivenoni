@@ -5,10 +5,12 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Dimension;
 
-public class GameWindow extends JFrame {
+public class GameWindow extends JFrame implements Runnable{
 
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 600;
+
+    private boolean isGameRunning;
 
     public GameWindow() {
         super();
@@ -21,6 +23,29 @@ public class GameWindow extends JFrame {
         add(gamePanel);
         pack();
         setVisible(true);
+
+        isGameRunning = true;
+    }
+
+    public void update(double deltaTime) {
+
+    }
+
+    @Override
+    public void run() {
+
+        long lastUpdateTime = System.nanoTime();
+        long currentTime;
+
+        double deltaTime;
+
+        while (isGameRunning) {
+            currentTime = System.nanoTime();
+            deltaTime = (currentTime - lastUpdateTime) * 1e-9;
+            lastUpdateTime = currentTime;
+            update(deltaTime);
+        }
+        dispose(); // Call dispose on JFrame
     }
 }
 
